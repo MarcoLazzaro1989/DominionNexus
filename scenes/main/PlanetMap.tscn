@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://caktj7t3in5q7"]
+
+[ext_resource type="Script" uid="uid://c17thwakkadvn" path="res://scenes/main/PlanetMap.gd" id="1_nsee8"]
+
+[node name="PlanetMap" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nsee8")
+
+[node name="TileGrid" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 3
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 94.0
+offset_right = 609.0
+offset_bottom = 125.0
+text = "Back"
+
+[node name="POIDialog" type="AcceptDialog" parent="."]
+title = "Scoperta"
+dialog_text = " "
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

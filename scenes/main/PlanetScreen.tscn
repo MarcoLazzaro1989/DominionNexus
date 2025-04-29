@@ -1,0 +1,323 @@
+[gd_scene load_steps=16 format=3 uid="uid://r8ifeaex76ay"]
+
+[ext_resource type="Script" uid="uid://b8v27rstqdusx" path="res://scripts/main/PlanetScreen.gd" id="1_1j2vc"]
+[ext_resource type="Theme" uid="uid://74onvytij61x" path="res://Theme.tres" id="1_dc2im"]
+[ext_resource type="PackedScene" uid="uid://dqmoilatks70f" path="res://scenes/ui/SanctumPanel.tscn" id="2_5qg8n"]
+[ext_resource type="PackedScene" uid="uid://cbh5h86vdbunv" path="res://scenes/ui/ForgePanel.tscn" id="2_koia7"]
+[ext_resource type="PackedScene" uid="uid://buidpjmhc5axy" path="res://scenes/ui/InventoryPanel.tscn" id="2_u3653"]
+[ext_resource type="PackedScene" uid="uid://diwvcgbmr6rmk" path="res://scenes/ui/GearPanel.tscn" id="5_roew1"]
+[ext_resource type="Shader" uid="uid://dxas108g50vdr" path="res://shader/XPRing.gdshader" id="6_dwv3y"]
+[ext_resource type="PackedScene" uid="uid://cj7wxwldnm1fo" path="res://scenes/ui/ReincarnationPanel.tscn" id="6_jqffs"]
+[ext_resource type="Texture2D" uid="uid://cs6ds1coqj1sd" path="res://assets/icons/stone_icon.png" id="8_0cq7q"]
+[ext_resource type="Texture2D" uid="uid://rcgdj8kobcxs" path="res://assets/icons/wood_icon.png" id="9_ef1pv"]
+[ext_resource type="Texture2D" uid="uid://difpnyquouylf" path="res://assets/icons/velarite_icon.png" id="10_ef1pv"]
+[ext_resource type="Texture2D" uid="uid://dvc6ch280t7na" path="res://assets/icons/Avatar.png" id="11_itorg"]
+
+[sub_resource type="Animation" id="Animation_dwv3y"]
+resource_name = "LevelUpFlash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitVBox/PortraitPane/XPRing:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ege1"]
+_data = {
+&"LevelUpFlash": SubResource("Animation_dwv3y")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ege1"]
+shader = ExtResource("6_dwv3y")
+shader_parameter/fill_amount = 0.75
+shader_parameter/ring_color = Color(0.4, 1, 0.4, 1)
+shader_parameter/bg_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/thickness = 0.1
+
+[node name="MainUI" type="Control" groups=["LevelUI", "ReincarnationUI"]]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dc2im")
+script = ExtResource("1_1j2vc")
+
+[node name="TopBar" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 69.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="TopBar/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Dominion Nexus – Homeworld"
+horizontal_alignment = 2
+justification_flags = 131
+
+[node name="Spacer" type="Control" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Resources" type="HBoxContainer" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 15
+
+[node name="StoneIcon" type="TextureRect" parent="TopBar/HBoxContainer/Resources"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("8_0cq7q")
+expand_mode = 2
+
+[node name="StoneLabel" type="Label" parent="TopBar/HBoxContainer/Resources"]
+layout_mode = 2
+text = "0"
+
+[node name="WoodIcon" type="TextureRect" parent="TopBar/HBoxContainer/Resources"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("9_ef1pv")
+expand_mode = 2
+
+[node name="WoodLabel" type="Label" parent="TopBar/HBoxContainer/Resources"]
+layout_mode = 2
+text = "0"
+
+[node name="VelaIcon" type="TextureRect" parent="TopBar/HBoxContainer/Resources"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("10_ef1pv")
+expand_mode = 2
+
+[node name="VelariteLabel" type="Label" parent="TopBar/HBoxContainer/Resources"]
+layout_mode = 2
+text = "0"
+
+[node name="BiomeLabel" type="Label" parent="TopBar/HBoxContainer/Resources"]
+layout_mode = 2
+text = "Biome: Frozen"
+
+[node name="MainTabs" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 69.0
+offset_right = -1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="AvatarTab" type="VBoxContainer" parent="MainTabs"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="AvatarSection" type="HBoxContainer" parent="MainTabs/AvatarTab"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+theme = ExtResource("1_dc2im")
+theme_override_constants/separation = 40
+
+[node name="PortraitVBox" type="VBoxContainer" parent="MainTabs/AvatarTab/AvatarSection"]
+layout_mode = 2
+alignment = 1
+
+[node name="AnimAvatar" type="AnimationPlayer" parent="MainTabs/AvatarTab/AvatarSection/PortraitVBox"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_1ege1")
+}
+
+[node name="PortraitPane" type="Control" parent="MainTabs/AvatarTab/AvatarSection/PortraitVBox"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="XPRing" type="ColorRect" parent="MainTabs/AvatarTab/AvatarSection/PortraitVBox/PortraitPane"]
+material = SubResource("ShaderMaterial_1ege1")
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 1
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 146.0
+offset_bottom = 145.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Portrait" type="TextureRect" parent="MainTabs/AvatarTab/AvatarSection/PortraitVBox/PortraitPane"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+offset_left = 13.0
+offset_top = 3.0
+offset_right = 141.0
+offset_bottom = 131.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("11_itorg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelLabel" type="Label" parent="MainTabs/AvatarTab/AvatarSection/PortraitVBox/PortraitPane"]
+layout_mode = 2
+offset_left = 28.0
+offset_top = 149.0
+offset_right = 124.0
+offset_bottom = 186.0
+theme = ExtResource("1_dc2im")
+text = "Livello 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AvatarInfo" type="VBoxContainer" parent="MainTabs/AvatarTab/AvatarSection"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ResourceButtons" type="VBoxContainer" parent="MainTabs/AvatarTab/AvatarSection/AvatarInfo"]
+layout_mode = 2
+
+[node name="CollectButton" type="Button" parent="MainTabs/AvatarTab/AvatarSection/AvatarInfo/ResourceButtons"]
+layout_mode = 2
+text = "Collect Stone"
+
+[node name="AutoCollectBar" type="ProgressBar" parent="MainTabs/AvatarTab/AvatarSection/AvatarInfo/ResourceButtons"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VelariteButton" type="Button" parent="MainTabs/AvatarTab/AvatarSection/AvatarInfo/ResourceButtons"]
+layout_mode = 2
+disabled = true
+text = "Extract Velarite"
+
+[node name="BuildSanctumButton" type="Button" parent="MainTabs/AvatarTab/AvatarSection/AvatarInfo/ResourceButtons"]
+layout_mode = 2
+disabled = true
+text = "Build the Sanctum (10 Stone)"
+
+[node name="OpenMapButton" type="Button" parent="MainTabs/AvatarTab/AvatarSection/AvatarInfo/ResourceButtons"]
+layout_mode = 2
+text = "Open Planet Map
+
+"
+
+[node name="InterdimensionalTravelButton" type="Button" parent="MainTabs/AvatarTab/AvatarSection/AvatarInfo/ResourceButtons"]
+visible = false
+layout_mode = 2
+disabled = true
+text = "Viaggia tra Dimensioni"
+
+[node name="HuntersTab" type="VBoxContainer" parent="MainTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HunterContent" type="VBoxContainer" parent="MainTabs/HuntersTab"]
+layout_mode = 2
+
+[node name="RaidersTab" type="VBoxContainer" parent="MainTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="RaidersContent" type="VBoxContainer" parent="MainTabs/RaidersTab"]
+layout_mode = 2
+
+[node name="BottomBar" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FooterButtons" type="HBoxContainer" parent="BottomBar"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="InventoryButton" type="Button" parent="BottomBar/FooterButtons"]
+layout_mode = 2
+text = "📦 Open Inventory"
+
+[node name="OpenForgeButton" type="Button" parent="BottomBar/FooterButtons"]
+layout_mode = 2
+text = "Open Forging"
+
+[node name="OpenSanctumButton" type="Button" parent="BottomBar/FooterButtons"]
+layout_mode = 2
+text = "Open Sanctum"
+
+[node name="OpenGearButton" type="Button" parent="BottomBar/FooterButtons"]
+layout_mode = 2
+text = "Open Equipment"
+
+[node name="AutoCollectTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ProgressTickTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="ForgePanel" parent="." instance=ExtResource("2_koia7")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="InventoryPanel" parent="." instance=ExtResource("2_u3653")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="SanctumPanel" parent="." instance=ExtResource("2_5qg8n")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="GearPanel" parent="." instance=ExtResource("5_roew1")]
+visible = false
+layout_mode = 1
+
+[node name="ReincarnationPanel" parent="." instance=ExtResource("6_jqffs")]
+visible = false

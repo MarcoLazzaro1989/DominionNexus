@@ -1,0 +1,33 @@
+{
+  "base_xp_to_level": 100,
+  "xp_increment_per_level": 25,
+  "forge_cost": {
+	"stone": 10,
+	"wood": 5,
+	"velarite": 1
+  },
+  "offline_production": {
+	"cycle_seconds": 2,
+	"rates": {
+	  "stone": 2,
+	  "wood": 1
+	}
+  },
+  "biome_modifiers": {
+	"Desert": { "attack_bonus": 2, "burn_chance": 0.25 },
+	"Frozen": { "magic_bonus": 2, "freeze_chance": 0.3 },
+	"Iron":   { "defense_bonus": 3, "attack_bonus": 1 },
+	"Terrestrial": { "speed_bonus": 1, "defense_bonus": 1 }
+  },
+  "biome_tags": {
+	"Desert": "of the Dunes",
+	"Frozen": "of the Glacier",
+	"Iron":   "Forged",
+	"Terrestrial": "of Nature"
+  },
+  "forge_cost": {
+	"stone": 10,
+	"wood": 5,
+	"velarite": 1
+  }
+}

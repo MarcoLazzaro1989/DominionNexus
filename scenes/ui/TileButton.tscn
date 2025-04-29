@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr2koeupn6yse"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlyfm"]
+bg_color = Color(0.705882, 0.745098, 0.784314, 1)
+
+[node name="TileButton" type="Button"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xlyfm")
+text = "?"

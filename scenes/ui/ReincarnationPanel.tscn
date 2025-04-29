@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj7wxwldnm1fo"]
+
+[ext_resource type="Script" uid="uid://vw1s7kddel45" path="res://scripts/ui/ReincarnationPanel.gd" id="1_jndc5"]
+
+[node name="ReincarnationPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jndc5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 600.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ReincarnationPromptLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "You have perished. Choose a bonus for your next life:"
+
+[node name="XpBonusButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Gain +10% XP in your next life"
+
+[node name="DefenseBonusButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Start with +1 base Defense"
+
+[node name="AttackBonusButton" type="Button" parent="Panel/VBoxContainer" groups=["ReincarnationUI"]]
+layout_mode = 2
+text = "Start with +1 base Attack"
