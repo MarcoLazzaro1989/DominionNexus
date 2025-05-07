@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://et54jni8oqb8"]
+
+[ext_resource type="Script" uid="uid://bmbvfc404y2oq" path="res://scripts/ui/InventoryItem.gd" id="1_5efel"]
+[ext_resource type="Texture2D" uid="uid://d10ta0xdgdcbk" path="res://icon.svg" id="2_cmmsb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5efel"]
+border_color = Color(0.927655, 0.79605, 0, 1)
+border_blend = true
+corner_detail = 9
+
+[node name="InventoryItem" type="HBoxContainer"]
+offset_top = -1.0
+offset_right = 215.0
+offset_bottom = 128.0
+script = ExtResource("1_5efel")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_cmmsb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Name"
+
+[node name="QuantityLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5efel")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Equipaggia"
+
+[connection signal="pressed" from="VBoxContainer/EquipButton" to="." method="_on_equip_button_pressed"]

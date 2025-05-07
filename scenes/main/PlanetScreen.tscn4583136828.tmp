@@ -1,0 +1,209 @@
+[gd_scene load_steps=7 format=3 uid="uid://r8ifeaex76ay"]
+
+[ext_resource type="Script" uid="uid://b8v27rstqdusx" path="res://scripts/main/PlanetScreen.gd" id="1_1j2vc"]
+[ext_resource type="PackedScene" uid="uid://dqmoilatks70f" path="res://scenes/ui/SanctumPanel.tscn" id="2_5qg8n"]
+[ext_resource type="PackedScene" uid="uid://cbh5h86vdbunv" path="res://scenes/ui/ForgePanel.tscn" id="2_koia7"]
+[ext_resource type="PackedScene" uid="uid://buidpjmhc5axy" path="res://scenes/ui/InventoryPanel.tscn" id="2_u3653"]
+[ext_resource type="PackedScene" uid="uid://diwvcgbmr6rmk" path="res://scenes/ui/GearPanel.tscn" id="5_roew1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_roew1"]
+bg_color = Color(0.436492, 0.684388, 0, 1)
+
+[node name="PlanetScreen" type="Control" groups=["LevelUI"]]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1j2vc")
+
+[node name="MainMarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MainVBox" type="VBoxContainer" parent="MainMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="MainMarginContainer/MainVBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="TitleLabel" type="Label" parent="MainMarginContainer/MainVBox/Header"]
+layout_mode = 2
+text = "Dominion Nexus – Homeworld"
+
+[node name="XPBox" type="VBoxContainer" parent="MainMarginContainer/MainVBox/Header"]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="MainMarginContainer/MainVBox/Header/XPBox"]
+layout_mode = 2
+text = "Livello: 1"
+
+[node name="XPBar" type="ProgressBar" parent="MainMarginContainer/MainVBox/Header/XPBox"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_roew1")
+show_percentage = false
+
+[node name="ResourceBox" type="VBoxContainer" parent="MainMarginContainer/MainVBox/Header"]
+layout_mode = 2
+
+[node name="StoneLabel" type="Label" parent="MainMarginContainer/MainVBox/Header/ResourceBox"]
+layout_mode = 2
+text = "Pietra: 0"
+
+[node name="WoodLabel" type="Label" parent="MainMarginContainer/MainVBox/Header/ResourceBox"]
+layout_mode = 2
+text = "Legno: 0"
+
+[node name="VelariteLabel" type="Label" parent="MainMarginContainer/MainVBox/Header/ResourceBox"]
+layout_mode = 2
+text = "Velarite: 0"
+
+[node name="BiomeLabel" type="Label" parent="MainMarginContainer/MainVBox/Header"]
+layout_mode = 2
+
+[node name="ScrollArea" type="ScrollContainer" parent="MainMarginContainer/MainVBox"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="ScrollableContent" type="VBoxContainer" parent="MainMarginContainer/MainVBox/ScrollArea"]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+
+[node name="ActionArea" type="VBoxContainer" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent"]
+layout_mode = 2
+
+[node name="ResourceButtons" type="HBoxContainer" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent/ActionArea"]
+layout_mode = 2
+
+[node name="CollectButton" type="Button" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent/ActionArea/ResourceButtons"]
+layout_mode = 2
+text = "Raccogli Pietra"
+
+[node name="AutoCollectBar" type="ProgressBar" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent/ActionArea/ResourceButtons"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VelariteButton" type="Button" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent/ActionArea/ResourceButtons"]
+layout_mode = 2
+disabled = true
+text = "Estrai Velarite"
+
+[node name="BuildSanctumButton" type="Button" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent/ActionArea/ResourceButtons"]
+layout_mode = 2
+disabled = true
+text = "Costruisci il Sanctum (10 Pietra)
+
+"
+
+[node name="OpenMapButton" type="Button" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent/ActionArea/ResourceButtons"]
+layout_mode = 2
+text = "Apri Mappa Pianeta"
+
+[node name="InterdimensionalTravelButton" type="Button" parent="MainMarginContainer/MainVBox/ScrollArea/ScrollableContent/ActionArea/ResourceButtons"]
+visible = false
+layout_mode = 2
+disabled = true
+text = "Viaggia tra Dimensioni"
+
+[node name="FooterButtons" type="HBoxContainer" parent="MainMarginContainer/MainVBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="InventoryButton" type="Button" parent="MainMarginContainer/MainVBox/FooterButtons"]
+layout_mode = 2
+text = "📦 Apri Inventario"
+
+[node name="OpenForgeButton" type="Button" parent="MainMarginContainer/MainVBox/FooterButtons"]
+layout_mode = 2
+text = "Apri Forgiatura"
+
+[node name="OpenSanctumButton" type="Button" parent="MainMarginContainer/MainVBox/FooterButtons"]
+layout_mode = 2
+text = "Apri Sanctum"
+
+[node name="OpenGearButton" type="Button" parent="MainMarginContainer/MainVBox/FooterButtons"]
+layout_mode = 2
+text = "Apri Equipaggiamento"
+
+[node name="AutoCollectTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="ProgressTickTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="ForgePanel" parent="." instance=ExtResource("2_koia7")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="InventoryPanel" parent="." instance=ExtResource("2_u3653")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="SanctumPanel" parent="." instance=ExtResource("2_5qg8n")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="GearPanel" parent="." instance=ExtResource("5_roew1")]
+visible = false
+layout_mode = 1
+
+[node name="LevelUpPanel" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="LevelUpPanel"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelUpLabel" type="Label" parent="LevelUpPanel/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
